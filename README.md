@@ -1,30 +1,31 @@
-# envelope.github.io
+# envelope-mx.github.io
 
-GitHub Pages entry point for Envelope.
+GitHub Pages root entry point for the [envelope-mx](https://github.com/envelope-mx) organization. Because this repository's name matches the org name exactly (`envelope-mx.github.io`), GitHub serves it at the bare root domain rather than as a project page.
 
-This repository redirects visitors to the [Envelope documentation](https://envelope.github.io/docs/).
+This repo is just a redirect: it sends visitors straight to the [Envelope documentation](https://envelope-mx.github.io/docs/), which is built and deployed separately from [envelope-mx/docs](https://github.com/envelope-mx/docs).
+
+Live: **https://envelope-mx.github.io/** → redirects to **https://envelope-mx.github.io/docs/**
 
 ## Structure
 
-- `index.html` - Redirect to `/docs/`
-- `404.html` - Custom 404 page
+- `index.html` — meta-refresh + canonical-link redirect to `/docs/`
+- `404.html` — custom 404 page with a link back to the docs
 
-## Related Repositories
+There is no build step; both files are served as-is via GitHub Pages (Settings → Pages → deploy from a branch, or GitHub Actions — whichever this repo has configured).
+
+## Development
+
+Edit `index.html` / `404.html` directly and preview locally with any static file server, e.g.:
+
+```bash
+python3 -m http.server 8000
+# then open http://localhost:8000/index.html
+```
+
+## Related repositories
 
 | Repository | Description |
 | --- | --- |
-| [envelope](https://github.com/isaiahiroko/envelope) | Core platform (private — binaries and Docker images published, source is not public) |
-| [envelope-docs](https://github.com/isaiahiroko/envelope-docs) | Documentation source |
-
-## Documentation
-
-The documentation is built and deployed from the [envelope-docs](https://github.com/isaiahiroko/envelope-docs) repository using GitHub Actions.
-
-Visit: **https://envelope.github.io/docs/**
-
-## Before publishing
-
-This repo's name (`envelope.github.io`) and the links above assume an `envelope` GitHub org owning both this redirect repo and `docs`, mirroring how `awesome-goose.github.io` sits alongside `awesome-goose/docs`. The actual `envelope` and `envelope-docs` repositories are currently under the personal account `isaiahiroko`, not an `envelope` org — before this goes live, either:
-
-- create an `envelope` org and move/fork the repos into it so `envelope.github.io` is a valid org Pages entry point, or
-- rename this repo to `isaiahiroko.github.io` (a personal user Pages site) and change `/docs/` below to `/envelope-docs/` throughout (`index.html`'s redirect target and canonical link, `404.html`'s link, and this README), since a user page's docs would live at `https://isaiahiroko.github.io/envelope-docs/` rather than `https://envelope.github.io/docs/`.
+| [envelope-mx/envelope](https://github.com/envelope-mx/envelope) | Core platform (private — binaries and Docker images published, source is not public) |
+| [envelope-mx/docs](https://github.com/envelope-mx/docs) | Documentation site source, deployed to `/docs/` on this domain |
+| [envelope-mx/index](https://github.com/envelope-mx/index) | Internal product/technical planning docs |
